@@ -1,25 +1,21 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Navbar = () => {
+	const navigate = useNavigate();
+
+	const handleLogout = () => {
+		sessionStorage.removeItem("token");
+		navigate("/login");
+	};
+
 	return (
 		<nav className="navbar navbar-light bg-light">
-			<div className="container d-flex justify-content-between align-items-center">
-				<Link to="/">
-					<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-				</Link>
+			<div className="container">
+				<Link to="/" className="navbar-brand mb-0 h1">React Boilerplate</Link>
 				<div>
-					<Link to="/signup" className="btn btn-outline-primary mx-1">
-						Registro
-					</Link>
-					<Link to="/login" className="btn btn-outline-success mx-1">
-						Login
-					</Link>
-					<Link to="/private" className="btn btn-outline-danger mx-1">
-						Privado
-					</Link>
-					<Link to="/demo" className="btn btn-primary mx-1">
-						Context Demo
-					</Link>
+					<Link to="/signup" className="btn btn-outline-primary me-2">Signup</Link>
+					<Link to="/login" className="btn btn-outline-success me-2">Login</Link>
+					<button onClick={handleLogout} className="btn btn-danger">Logout</button>
 				</div>
 			</div>
 		</nav>
