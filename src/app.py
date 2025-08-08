@@ -8,6 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_jwt_extended import JWTManager, create_access_token, jwt_required, get_jwt_identity
 import os
 
+
 app = Flask(__name__)
 CORS(app)
 
@@ -25,6 +26,7 @@ jwt = JWTManager(app)
 
 
 class User(db.Model):
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(200), nullable=False)
@@ -77,7 +79,7 @@ def login():
     if not user or not check_password_hash(user.password, password):
         return jsonify({"error": "Credenciales inválidas"}), 401
 
-    token = create_access_token(identity=user.id)
+    token = create_access_token(identity=str(user.id))
     return jsonify({"token": token, "user": user.serialize()}), 200
 
 # Ruta privada

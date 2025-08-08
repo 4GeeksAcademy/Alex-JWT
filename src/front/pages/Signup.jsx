@@ -14,7 +14,7 @@ export const Signup = () => {
         setError(null);
 
         try {
-            const res = await fetch("http://localhost:3001/api/signup", { // Ajusta URL backend si es necesario
+            const res = await fetch("https://upgraded-happiness-gwjr54v5q96cv9v7-3001.app.github.dev/signup", { // Ajusta URL backend si es necesario
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),

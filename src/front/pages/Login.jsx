@@ -14,7 +14,7 @@ export const Login = () => {
         setError(null);
 
         try {
-            const res = await fetch("http://localhost:3001/api/login", { // Ajusta URL si es necesario
+            const res = await fetch("https://upgraded-happiness-gwjr54v5q96cv9v7-3001.app.github.dev/login", { // Ajusta URL si es necesario
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
@@ -22,7 +22,7 @@ export const Login = () => {
 
             if (!res.ok) {
                 const data = await res.json();
-                throw new Error(data.message || "Error en inicio de sesión");
+                throw new Error(data.error || "Error en inicio de sesión");
             }
 
             const data = await res.json();
